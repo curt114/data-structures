@@ -1,0 +1,6 @@
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: var(--space-10);
+}

@@ -1,31 +1,40 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
+import styles from "./Navbar.module.css";
+import { Link } from "react-router-dom";
 
 const NavbarContext = createContext();
 
-function Navbar(props) {
+function Navbar({ activeTab, children }) {
   return (
-    <div style={props.navStyles}>
-      <NavbarContext.Provider value={{ test: "testing parameter" }}>
-        {props.children}
+    <nav className={styles.navbar}>
+      <NavbarContext.Provider value={{ activeTab }}>
+        {children}
       </NavbarContext.Provider>
-    </div>
+    </nav>
   );
 }
 
-function Logo({ children }) {
-  return <div>Logo</div>;
+function Tabs({ children }) {
+  return <ul className={styles.navTabs}>{children}</ul>;
 }
 
-function Accounts({ children }) {
-  return <div>Accounts</div>;
+function Tab({ label, location }) {
+  const { activeTab } = useContext(NavbarContext);
+  return (
+    <li>
+      <Link
+        to={location}
+        className={` ${styles.navTab} ${
+          activeTab === label ? styles.navTabActive : styles.navTabNotActive
+        }`}
+      >
+        {label}{" "}
+      </Link>
+    </li>
+  );
 }
 
-function Links({ children }) {
-  return <div>Links</div>;
-}
-
-Navbar.Logo = Logo;
-Navbar.Accounts = Accounts;
-Navbar.Links = Links;
+Navbar.Tabs = Tabs;
+Navbar.Tab = Tab;
 
 export default Navbar;

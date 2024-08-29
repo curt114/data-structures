@@ -1,127 +1,62 @@
-import { useEffect, useState } from "react";
-import ArrayCard from "./components/ArrayCard/ArrayCard.jsx";
-import QuestionCard from "./components/QuestionCard/QuestionCard.jsx";
-
-function algorithm(str) {
-  let pointerOne = 0;
-  let pointerTwo = 0;
-  let iterations = 0;
-  const pointers = [];
-  const result = [];
-  const data = {};
-  let numbers = "0123456789";
-
-  while (pointerTwo < str.length) {
-    if (numbers.includes(str[pointerTwo])) {
-      pointers.push([pointerOne, pointerTwo]);
-      data[iterations] = {
-        pointers: [pointerOne, pointerTwo],
-        result: [...result],
-      };
-      pointerTwo++;
-      iterations++;
-    } else {
-      const number = parseInt(str.slice(pointerOne, pointerTwo));
-      for (let i = 0; i < number; i++) {
-        result.push(str[pointerTwo]);
-        pointers.push([pointerOne, pointerTwo]);
-        data[iterations] = {
-          pointers: [pointerOne, pointerTwo],
-          result: [...result],
-        };
-        iterations++;
-      }
-      pointerTwo++;
-      pointerOne = pointerTwo;
-    }
-  }
-  return { iterations, result, data };
-}
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DashboardLayout from "./layouts/dashboard/DashboardLayout.jsx";
+import ArrayOverview from "./pages/arrays/overview/Overview.jsx";
+import Uncompress from "./pages/arrays/uncompress/Uncompress.jsx";
+import Compress from "./pages/arrays/compress/Compress.jsx";
+import Anagrams from "./pages/arrays/anagrams/Anagrams.jsx";
+import Home from "./pages/home/Home.jsx";
+import About from "./pages/about/About.jsx";
+import MostFrequentChar from "./pages/arrays/MostFrequentChar/MostFrequentChar.jsx";
+import PairSum from "./pages/arrays/PairSum/PairSum.jsx";
+import PairProduct from "./pages/arrays/PairProduct/PairProduct.jsx";
+import Intersection from "./pages/arrays/Intersection/Intersection.jsx";
+import FiveSort from "./pages/arrays/FiveSort/FiveSort.jsx";
 
 function App() {
-  const [results, setResults] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [input, setInput] = useState("2p1o5p2z5a");
-
-  useEffect(() => {
-    const { iterations, result, data } = algorithm(input);
-    setResults({ iterations, result, data });
-    setIsLoading(false);
-  }, []);
-
   return (
-    <>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <div
-          style={{ display: "flex", gap: "3.2rem", margin: "var(--space-10)" }}
-        >
-          <QuestionCard></QuestionCard>
-          <ArrayCard iterations={results.iterations}>
-            <ArrayCard.CircleNext />
-            <ArrayCard.CirclePrevious />
-            <ArrayCard.Head iterations={results.iterations}></ArrayCard.Head>
-            <ArrayCard.Body>
-              <ArrayCard.DrawPointers arr={[...input]} data={results.data} />
-              <ArrayCard.DrawArray arr={[...input]} data={results.data} />
-              <ArrayCard.DrawIndicies arr={[...input]} />
-              <ArrayCard.DrawResult arr={results.result} data={results.data} />
-            </ArrayCard.Body>
-          </ArrayCard>
-        </div>
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DashboardLayout content={<Home />} />} />
+        <Route
+          path="/arrays-and-strings/overview"
+          element={<DashboardLayout content={<ArrayOverview />} />}
+        />
+        <Route
+          path="/arrays-and-strings/uncompress"
+          element={<DashboardLayout content={<Uncompress />} />}
+        />
+        <Route
+          path="/arrays-and-strings/compress"
+          element={<DashboardLayout content={<Compress />} />}
+        />
+        <Route
+          path="/arrays-and-strings/anagrams"
+          element={<DashboardLayout content={<Anagrams />} />}
+        />
+        <Route
+          path="/arrays-and-strings/most-frequent-char"
+          element={<DashboardLayout content={<MostFrequentChar />} />}
+        />
+        <Route
+          path="/arrays-and-strings/pair-sum"
+          element={<DashboardLayout content={<PairSum />} />}
+        />
+        <Route
+          path="/arrays-and-strings/pair-product"
+          element={<DashboardLayout content={<PairProduct />} />}
+        />
+        <Route
+          path="/arrays-and-strings/intersection"
+          element={<DashboardLayout content={<Intersection />} />}
+        />
+        <Route
+          path="/arrays-and-strings/five-sort"
+          element={<DashboardLayout content={<FiveSort />} />}
+        />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-// function algorithm(str) {
-//   let pointerOne = 0;
-//   let pointerTwo = 0;
-//   let iterations = 0;
-//   let pointers = [];
-//   let result = [];
-//   let data = {};
-//   let numbers = "0123456789";
-
-//   while (pointerTwo < str.length) {
-//     if (numbers.includes(str[pointerTwo])) {
-//       pointers.push([pointerOne, pointerTwo]);
-//       data[iterations] = {
-//         pointers: [pointerOne, pointerTwo],
-//         result: [...result],
-//       };
-//       pointerTwo++;
-//       iterations++;
-//     } else {
-//       const number = parseInt(str.slice(pointerOne, pointerTwo));
-//       for (let i = 0; i < number; i++) {
-//         result.push(str[pointerTwo]);
-//         pointers.push([pointerOne, pointerTwo]);
-//         data[iterations] = {
-//           pointers: [pointerOne, pointerTwo],
-//           result: [...result],
-//         };
-//         iterations++;
-//       }
-//       pointerTwo++;
-//       pointerOne = pointerTwo;
-//     }
-//   }
-
-//   return (
-//     <Card iterations={iterations}>
-//       <Card.CircleNext />
-//       <Card.CirclePrevious />
-//       <Card.Head iterations={iterations}></Card.Head>
-//       <Card.Body>
-//         <Card.DrawPointers arr={[...str]} data={data} />
-//         <Card.DrawArray arr={[...str]} data={data} />
-//         <Card.DrawIndicies arr={[...str]} />
-//         <Card.DrawResult arr={result} data={data} />
-//       </Card.Body>
-//     </Card>
-//   );
-// }

@@ -1,11 +1,28 @@
 :root {
   /* Colors */
   --white: #ffffff;
+  --indigo-50: #eef2ff;
   --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
   --indigo-400: #818cf8;
   --indigo-500: #6366f1;
-  --slate-color-800: #1e293b;
-  --slate-color-200: #e2e8f0;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+  --indigo-800: #3730a3;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --teal-500: #14b8a6;
+  --emerald-500: #059669;
+  --red-500: #ef4444;
 
   /* Spacing */
   --space-0: 0rem; /* 0px */
@@ -43,6 +60,12 @@
   box-sizing: border-box; /* The width and height include the content, padding, and border */
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 html {
   font-size: 62.5%; /* 1rem = 10px */
 }
@@ -53,10 +76,11 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
   line-height: 2.4rem;
+}
 
-  /* TEMPORARY */
+#root {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 ul {

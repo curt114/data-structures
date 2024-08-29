@@ -1,0 +1,67 @@
+.sidebar {
+  background-color: var(--slate-800);
+  color: var(--slate-200);
+  font-size: 1.2rem;
+}
+
+/* Space between Top Level Tabs */
+.sidebar__tabs > li > a {
+  padding: 1.2rem 0;
+}
+
+/* Space between Sub Level Tabs */
+.sidebar__tabs > ul > li > a,
+.sidebar__tabs > ul > ul > li > a {
+  padding: 0.4rem 0;
+}
+
+.sidebar__tabs > li > a > div > p {
+  padding-left: 1.4rem;
+}
+
+/* Indent Child Tabs */
+.sidebar__tabs > ul > li > a > div > p {
+  padding-left: 2rem;
+}
+
+/* Indent Grand Child Tabs */
+.sidebar__tabs > ul > ul > li > a > div > p {
+  padding-left: 2.8rem;
+}
+
+.sidebar__tab:hover {
+  background-color: var(--slate-700);
+}
+
+.sidebar__anchor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--slate-200);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar__anchor--highlighted {
+  color: var(--indigo-400);
+}
+
+.notDropDownActive,
+.notDropDownActive:hover {
+  background-color: var(--slate-900);
+  color: var(--slate-100);
+}
+
+.sidebar__icon--sm {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.sidebar__icon--md {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.sidebar__title {
+  flex: 0 0 16rem;
+}

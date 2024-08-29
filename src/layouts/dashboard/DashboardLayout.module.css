@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 25.8rem 5fr;
+  grid-template-rows: 5rem 1fr;
+  grid-template-areas:
+    "aside header"
+    "aside main";
+}
+
+header {
+  grid-area: header;
+}
+
+aside {
+  grid-area: aside;
+}
+
+main {
+  grid-area: main;
+  background-color: var(--slate-100);
+}
